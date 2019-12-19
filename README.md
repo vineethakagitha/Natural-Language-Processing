@@ -27,18 +27,18 @@ The knowledge graph we took is Freebase. We have done the following steps for pr
 2.	From these values, we made sure that process only unique predicates. We extracted unique subject, predicate and object, predicate pairs
 
 Before processing, the data is in RDF format</br>
-<http://rdf.freebase.com/ns/american_football.football_player.footballdb_id>    <http://rdf.freebase.com/ns/type.object.type>   <http://rdf.freebase.com/ns/type.property> </br>
-<http://rdf.freebase.com/ns/american_football.football_player.footballdb_id>	<domain>	<http://rdf.freebase.com/ns/american_football.football_player> </br>
-<http://rdf.freebase.com/ns/american_football.football_player.footballdb_id>	<range>	<type.enumeration></br>
-<http://rdf.freebase.com/ns/m.01001tl3>  <http://rdf.freebase.com/ns/music.recording.artist>        <http://rdf.freebase.com/ns/m.01s7hcz></br>
+1.	<http://rdf.freebase.com/ns/american_football.football_player.footballdb_id>    <http://rdf.freebase.com/ns/type.object.type>   <http://rdf.freebase.com/ns/type.property> </br>
+2.	<http://rdf.freebase.com/ns/american_football.football_player.footballdb_id>	<domain>	<http://rdf.freebase.com/ns/american_football.football_player> </br>
+3.	<http://rdf.freebase.com/ns/american_football.football_player.footballdb_id>	<range>	<type.enumeration></br>
+4.	<http://rdf.freebase.com/ns/m.01001tl3>  <http://rdf.freebase.com/ns/music.recording.artist>        <http://rdf.freebase.com/ns/m.01s7hcz></br>
 And here is how Processed Data is -</br>
 Predicate List -</br>
-<american_football.football_player.footballdb_id> </br> 
+->	<american_football.football_player.footballdb_id> </br> 
 Domains and Ranges -   </br>
-<american_football.football_player.footballdb_id>	<domain>	<american_football.football_player> </br>
-<american_football.football_player.footballdb_id>	<range>	<type.enumeration></br>
+->	<american_football.football_player.footballdb_id>	<domain>	<american_football.football_player> </br>
+->	<american_football.football_player.footballdb_id>	<range>	<type.enumeration></br>
 Subject Predicate Object -</br>
-<m.01001tl3>  <music.recording.artist>        <m.01s7hcz>	</br>
+->	<m.01001tl3>  <music.recording.artist>        <m.01s7hcz>	</br>
 
 **Approach to generate QA pair for an Entity E**
 
