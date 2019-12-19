@@ -22,7 +22,7 @@ The whole project of Question Answer pairs generation has fallen into three vita
 
 **Preprocessing the data**
 
-	The knowledge graph we took is Freebase. We have done the following steps for preprocessing the knowledge graph. 
+The knowledge graph we took is Freebase. We have done the following steps for preprocessing the knowledge graph. 
 1.	Initially, the knowledge graph will be in RDF format. So, we had to preprocess the file containing RDF triples with URI links by removing the URI links and extracted the values like subject, predicate, object and predicate’s domain and range.</br>
 2.	From these values, we made sure that process only unique predicates. We extracted unique subject, predicate and object, predicate pairs
 
