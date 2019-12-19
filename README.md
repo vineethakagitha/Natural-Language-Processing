@@ -16,17 +16,17 @@ There are also template-based methods proposed where source text or a user query
  
 ### Project
  
-**Approach - **
+**Approach**
 
 The whole project of Question Answer pairs generation has fallen into three vital steps, one is Preprocessing the Freebase data to generate the test instances of the Text Generation model, the second is to generate the keywords for test instance and finally the last step is to implement a text generation model which is trained by a WikiAnswers dataset to generate questions from the keywords obtained from previous step.
 
-**Preprocessing the data -**
+**Preprocessing the data**
 
 	The knowledge graph we took is Freebase. We have done the following steps for preprocessing the knowledge graph. 
 1.	Initially, the knowledge graph will be in RDF format. So, we had to preprocess the file containing RDF triples with URI links by removing the URI links and extracted the values like subject, predicate, object and predicate’s domain and range.</br>
 2.	From these values, we made sure that process only unique predicates. We extracted unique subject, predicate and object, predicate pairs
 
-Before processing, the data is in RDF format
+Before processing, the data is in RDF format</br>
 <http://rdf.freebase.com/ns/american_football.football_player.footballdb_id>    <http://rdf.freebase.com/ns/type.object.type>   <http://rdf.freebase.com/ns/type.property> </br>
 <http://rdf.freebase.com/ns/american_football.football_player.footballdb_id>	<domain>	<http://rdf.freebase.com/ns/american_football.football_player> </br>
 <http://rdf.freebase.com/ns/american_football.football_player.footballdb_id>	<range>	<type.enumeration></br>
@@ -40,13 +40,13 @@ Domains and Ranges -   </br>
 Subject Predicate Object -</br>
 <m.01001tl3>  <music.recording.artist>        <m.01s7hcz>	</br>
 
-**Approach to generate QA pair for an Entity E -**
+**Approach to generate QA pair for an Entity E**
 
 The Knowledge Graph(KG) contains information about various entities in the form of triples. A triple consists of a subject, predicate, and object. The subjects/objects(person, place, etc.) are the nodes of the knowledge graph whereas predicates are the edges of the KG. The predicates define the relationship between the subject and the object. To generate the QA pair, we need two modules.</br>
 1.	Questions keywords and Answer Extractor: This is language independent and extracts required knowledge about the entity E from the KG.</br>
 2.	RNN based Natural Language Question Generator: This is language-dependent and when fed with the information extracted from the first part it generates natural language QA pairs.
 
-**Questions keywords and Answer Extractor - **
+**Questions keywords and Answer Extractor**
 
 The keywords are a concise representation of the natural language question. For example, let's take the entity as “William Shakespeare”. We have natural language question as “Who was the author of the play Hamlet?”. The keywords identified are {‘Author’,’Play’,’Hamlet’}. We can have a Question and answer pair as ({‘Author’,’Play’,’Hamlet’},“William Shakespeare”). In the Knowledge Graph, “Author”, “Play”, “Hamlet” are the nodes that are connected to the entity “William Shakespeare”. We must first identify the entity node in the KG and get all its neighbors.</br>
 Given a predicate pi, let sub(pi) be the subject of pi and obj(pi) be the object of pi. Let domain(pi) and range(pi) be the domain and range of pi respectively. Let {sub(pi), domain(pi), pi, obj(pi), range(pi)} be the 5-tuple associated with every pi. We use the following rules to generate QKA pairs from 5-tuples:</br>
@@ -70,7 +70,7 @@ Auf die Zechn-Tanz      composer        composer        Peter Havlicek</br>
 Peter Havlicek  composer        composition     Auf die Zechn-Tanz</br>
 Auf die Zechn-Tanz      recordings      recording       Auf die Zechn-Tanz</br>
 
-**RNN based Natural Language Question Generator - **
+**RNN based Natural Language Question Generator**
 
 As part of Natural Language question generator, we considered the question keywords that are identified in the previous step as input sequence and generate a question as output sequence. Instead of considering the set of keywords as a bag of words, we are giving importance to the order of occurrence of each keyword thereby making sure to generate semantically valid questions from the set of keywords. 
 The model to generate question from set of keywords is inspired from RNN based encoder and decoder. In this approach, We used LSTM model, the keywords of different lengths are encoded to a fixed length vector representation and then compute the probability of the question output sequence for that given encoded vector representation. We feed the model with these output sequences and finally select the question with highest probability from all the generated questions. 
@@ -98,7 +98,7 @@ Decoded sentence: how chemistry is a creme brulee in _END
 Input sentence: man loves woman</br>
 Decoded sentence: about a soldier wear for a _END
 
-### Results - 
+### Results
 
 We used BLEU score between the generated question and the reference question to evaluate the performance of Natural Language Generation system that we built. Here, there is only one reference question for each test Instance. The BLEU score here is an average n-gram overlap between the generated and reference question.</br>
 Example generated text is -</br>
@@ -107,7 +107,7 @@ Decoded sentence: what to human part of the the battery is the battery</br>
 Bleu score :  0.3686688 </br>
 Overall Average BLEU Score obtained from all the test instances is 0.36875
  
-References
+### References
 -	Keras Documentation https://blog.keras.io/a-ten-minute-introduction-to-sequence-to-sequence-learning-in-keras.html</br>
 -	Generating Natural Language Question-Answer Pairs from a Knowledge Graph using RNN Based Question Generation Model (https://www.aclweb.org/anthology/E17-1036)</br>
 -	Freebase (https://en.wikipedia.org/wiki/Freebase)</br>
